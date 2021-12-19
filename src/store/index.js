@@ -5,12 +5,8 @@ import auth from '@/store/modules/auth';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {count: 0},
-  mutations: {
-    increment(state) {
-      state.count++;
-    },
-  },
+  state: {},
+  mutations: {},
   actions: {},
   modules: {
     auth,
