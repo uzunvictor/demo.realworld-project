@@ -8,36 +8,46 @@ const state = {
   isLoggedIn: null,
 };
 
+export const mutationTypes = {
+  registerStart: '[auth] registerStart',
+  registerSucces: '[auth] registerSucces',
+  registerFailure: '[auth] registerFailure',
+};
+
+export const actionTypes = {
+  register: '[auth] register',
+};
+
 const mutations = {
-  registerStart(state) {
+  [mutationTypes.registerStart](state) {
     state.isSubmitting = true;
     state.validationErrors = null;
   },
-  registerSucces(state, payload) {
+  [mutationTypes.registerSucces](state, payload) {
     state.isSubmitting = false;
     state.currentUser = payload;
     state.isLoggedIn = true;
   },
-  registerFailure(state, payload) {
+  [mutationTypes.registerFailure](state, payload) {
     state.isSubmitting = false;
     state.validationErrors = payload;
   },
 };
 
 const actions = {
-  register({commit}, credentials) {
+  [actionTypes.register]({commit}, credentials) {
     return new Promise((resolve) => {
-      commit('registerStart');
+      commit(mutationTypes.registerStart);
       authApi
         .register(credentials)
         .then((response) => {
-          commit('registerSucces', response.data.user);
+          commit(mutationTypes.registerSucces, response.data.user);
           setItem('accessToken', response.data.user.token);
           console.log(response);
           resolve(response.data.user);
         })
         .catch((error) => {
-          commit('registerFailure', error.response.data.errors);
+          commit(mutationTypes.registerFailure, error.response.data.errors);
           console.log('catch the error', error.response.data.errors);
         });
     });
