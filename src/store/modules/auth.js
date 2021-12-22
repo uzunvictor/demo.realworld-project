@@ -1,4 +1,4 @@
-import authApi from '@/api/auth';
+import {register, login} from '@/api/auth';
 import {setItem} from '@/helpers/persistanceStorage';
 
 const state = {
@@ -16,6 +16,7 @@ export const mutationTypes = {
 
 export const actionTypes = {
   register: '[auth] register',
+  login: '[auth] login',
 };
 
 const mutations = {
@@ -38,8 +39,24 @@ const actions = {
   [actionTypes.register]({commit}, credentials) {
     return new Promise((resolve) => {
       commit(mutationTypes.registerStart);
-      authApi
-        .register(credentials)
+      register(credentials)
+        .then((response) => {
+          commit(mutationTypes.registerSucces, response.data.user);
+          setItem('accessToken', response.data.user.token);
+          console.log(response);
+          resolve(response.data.user);
+        })
+        .catch((error) => {
+          commit(mutationTypes.registerFailure, error.response.data.errors);
+          console.log('catch the error', error.response.data.errors);
+        });
+    });
+  },
+
+  [actionTypes.login]({commit}, credentials) {
+    return new Promise((resolve) => {
+      commit(mutationTypes.registerStart);
+      login(credentials)
         .then((response) => {
           commit(mutationTypes.registerSucces, response.data.user);
           setItem('accessToken', response.data.user.token);
