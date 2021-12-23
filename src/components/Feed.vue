@@ -51,13 +51,13 @@
 <script>
 import {actionTypes, getterTypes} from '@/store/modules/feed';
 import {mapGetters} from 'vuex';
-import McvPagination from '@/components/Pagination'
+import McvPagination from '@/components/Pagination';
 
 export default {
   name: 'McvFeed',
 
   components: {
-    McvPagination
+    McvPagination,
   },
 
   data() {
@@ -65,9 +65,10 @@ export default {
       total: 100,
       limit: 10,
       currentPage: 5,
-      url: 'tags/dragons'
-    }
-  }
+      url: 'tags/dragons',
+    };
+  },
+  
   props: {
     apiUrl: {
       type: String,
