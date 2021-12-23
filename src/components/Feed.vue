@@ -5,6 +5,7 @@
     <div v-if="error">Get the error: {{ error }}</div>
 
     <div v-if="feedData">
+      <!-- <p>{{feedData}}</p> -->
       <div
         class="article-preview"
         v-for="(article, index) in feedData.articles"
@@ -39,19 +40,21 @@
         </router-link>
       </div>
       <mcv-pagination
-        :total="total"
+        :total="feedData.articlesCount"
         :limit="limit"
         :current-page="currentPage"
-        :url="url"
+        :url="baseUrl"
       />
     </div>
   </div>
 </template>
 
 <script>
+import {limit} from '@/helpers/variables';
 import {actionTypes, getterTypes} from '@/store/modules/feed';
 import {mapGetters} from 'vuex';
 import McvPagination from '@/components/Pagination';
+import {stringify, parseUrl} from 'query-string';
 
 export default {
   name: 'McvFeed',
@@ -60,15 +63,6 @@ export default {
     McvPagination,
   },
 
-  data() {
-    return {
-      total: 100,
-      limit: 10,
-      currentPage: 5,
-      url: 'tags/dragons',
-    };
-  },
-  
   props: {
     apiUrl: {
       type: String,
@@ -82,10 +76,45 @@ export default {
       isLoading: getterTypes.isLoading,
       error: getterTypes.error,
     }),
+
+    currentPage() {
+      return Number(this.$route.query.page || '1');
+    },
+    baseUrl() {
+      return this.$route.path;
+    },
+    limit() {
+      return limit;
+    },
+    offset() {
+      return this.currentPage * limit - limit;
+    },
+  },
+
+  watch: {
+    currentPage() {
+      this.fetchFeed();
+    },
   },
 
   mounted() {
-    this.$store.dispatch(actionTypes.getFeed, {apiUrl: this.apiUrl});
+    this.fetchFeed();
+    setTimeout(() => {
+      console.log(this.feedData)
+    },3000)
+  },
+
+  methods: {
+    fetchFeed() {
+      const parsedUrl = parseUrl(this.apiUrl);
+      const stringifiedParams = stringify({
+        limit,
+        offset: this.offset,
+        ...parsedUrl.query,
+      });
+      const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
+      this.$store.dispatch(actionTypes.getFeed, {apiUrl: apiUrlWithParams});
+    },
   },
 };
 </script>
