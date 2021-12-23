@@ -7,3 +7,7 @@ export const register = (credentials) => {
 export const login = (credentials) => {
   return axios.post('/users/login', {user: credentials});
 };
+
+export const getCurrentUser = () => {
+  return axios.get('/user');
+};
