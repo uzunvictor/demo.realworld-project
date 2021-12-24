@@ -4,6 +4,8 @@ import GlobalFeed from '@/views/GlobalFeed.vue';
 import Register from '@/views/Register.vue';
 import Test from '@/views/Test.vue';
 import Signin from '@/views/Signin.vue';
+import YourFeed from '@/views/YourFeed';
+import TagFeed from '@/views/TagFeed';
 
 Vue.use(VueRouter);
 
@@ -31,12 +33,12 @@ const routes = [
   {
     path: '/feed',
     name: 'yourFeed',
-    component: GlobalFeed,
+    component: YourFeed,
   },
   {
     path: '/tags/:slug',
     name: 'tag',
-    component: GlobalFeed,
+    component: TagFeed,
   },
   {
     path: '/article/new',

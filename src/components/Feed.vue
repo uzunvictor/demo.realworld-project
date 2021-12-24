@@ -63,8 +63,8 @@ export default {
   name: 'McvFeed',
   data() {
     return {
-      skeletons: 3
-    }
+      skeletons: 3,
+    };
   },
 
   components: {

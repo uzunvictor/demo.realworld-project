@@ -22,16 +22,16 @@ import McvPopularTags from '@/components/PopularTags';
 import McvFeedToggler from '@/components/FeedToggler.vue';
 
 export default {
-  name: 'McvGlobalFeed',
+  name: 'McvYourFeed',
   components: {
     McvFeed,
     McvBanner,
     McvPopularTags,
-    McvFeedToggler,
+    McvFeedToggler
   },
   data() {
     return {
-      apiUrl: '/articles',
+      apiUrl: '/articles/feed',
     };
   },
 };
