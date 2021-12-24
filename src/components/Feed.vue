@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div v-if="isLoading">Loading...</div>
-
-    <div v-if="error">Get the error: {{ error }}</div>
+    <div v-if="isLoading">
+      <feed-loading v-for="skeleton in skeletons" :key="skeleton" />
+    </div>
+    <mcv-error-message v-if="error" :message="error" />
 
     <div v-if="feedData">
       <!-- <p>{{feedData}}</p> -->
@@ -50,6 +51,8 @@
 </template>
 
 <script>
+import McvErrorMessage from '@/components/ErrorMessage';
+import FeedLoading from '@/components/FeedLoading';
 import {limit} from '@/helpers/variables';
 import {actionTypes, getterTypes} from '@/store/modules/feed';
 import {mapGetters} from 'vuex';
@@ -58,9 +61,16 @@ import {stringify, parseUrl} from 'query-string';
 
 export default {
   name: 'McvFeed',
+  data() {
+    return {
+      skeletons: 3
+    }
+  },
 
   components: {
     McvPagination,
+    FeedLoading,
+    McvErrorMessage,
   },
 
   props: {
@@ -100,8 +110,8 @@ export default {
   mounted() {
     this.fetchFeed();
     setTimeout(() => {
-      console.log(this.feedData)
-    },3000)
+      console.log(this.feedData);
+    }, 3000);
   },
 
   methods: {
