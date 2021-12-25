@@ -1,7 +1,11 @@
 <template>
   <div>
     <div v-if="isLoading">
-      <feed-loading v-for="skeleton in skeletons" :key="skeleton" />
+      <feed-loading
+        v-for="(article, index) in feedData.articlesCount"
+        :key="index"
+      />
+      <!-- must realizating logic for loader before getting feed data -->
     </div>
     <mcv-error-message v-if="error" :message="error" />
 
@@ -37,7 +41,7 @@
           <h1>{{ article.title }}</h1>
           <p>{{ article.description }}</p>
           <span>Read more...</span>
-          Tag List
+          <mcv-tag-list :tags="article.tagList" />
         </router-link>
       </div>
       <mcv-pagination
@@ -51,6 +55,7 @@
 </template>
 
 <script>
+import McvTagList from '@/components/TagList';
 import McvErrorMessage from '@/components/ErrorMessage';
 import FeedLoading from '@/components/FeedLoading';
 import {limit} from '@/helpers/variables';
@@ -71,6 +76,7 @@ export default {
     McvPagination,
     FeedLoading,
     McvErrorMessage,
+    McvTagList,
   },
 
   props: {

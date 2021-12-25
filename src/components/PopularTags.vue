@@ -28,27 +28,27 @@ import {mapState} from 'vuex';
 
 export default {
   name: 'McvPopularTags',
-  data() {
-    return {
-      tags: [
-        'random',
-        'rando',
-        'andom',
-        'rndom',
-        'radom',
-        'ranom',
-        'randm',
-        'ranm',
-        'randmo',
-      ],
-    };
-  },
+  // data() {
+  //   return {
+  //     tags: [
+  //       'random',
+  //       'rando',
+  //       'andom',
+  //       'rndom',
+  //       'radom',
+  //       'ranom',
+  //       'randm',
+  //       'ranm',
+  //       'randmo',
+  //     ],
+  //   };
+  // },
 
   computed: {
     ...mapState({
       isLoading: (state) => state.popularTags.isLoading,
       error: (state) => state.popularTags.error,
-      //tags: (state) => state.popularTags.tags,
+      tags: (state) => state.popularTags.tags,
     }),
   },
 
