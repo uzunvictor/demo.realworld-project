@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import {auth, test, feed, popularTags, article} from '@/store/modules';
+import {auth, test, feed, popularTags, article, createArticle} from '@/store/modules';
 
 // import auth from '@/store/modules/auth';
 // import test from '@/store/modules/test';
@@ -20,5 +20,6 @@ export default new Vuex.Store({
     feed,
     popularTags,
     article,
+    createArticle
   },
 });
