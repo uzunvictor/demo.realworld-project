@@ -75,10 +75,10 @@ export default {
   },
   data() {
     return {
-      title: '',
-      description: '',
-      body: '',
-      tagList: '',
+      title: this.initialValues.title,
+      description: this.initialValues.description,
+      body: this.initialValues.body,
+      tagList: this.initialValues.tagList.join(' '),
     };
   },
   methods: {
@@ -95,6 +95,12 @@ export default {
 
   components: {
     McvValidationErrors,
+  },
+
+  mounted() {
+    setTimeout(() => {
+      console.log(this.initialValues);
+    }, 3000);
   },
 };
 </script>

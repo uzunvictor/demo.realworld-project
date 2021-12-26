@@ -11,3 +11,9 @@ export const login = (credentials) => {
 export const getCurrentUser = () => {
   return axios.get('/user');
 };
+
+export const updateCurrentUser = (currentUserInput) => {
+  return axios
+    .put('/user', {user: currentUserInput})
+    .then((response) => response.data.user);
+};
