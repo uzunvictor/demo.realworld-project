@@ -1,10 +1,7 @@
 <template>
   <div>
     <div v-if="isLoading">
-      <feed-loading
-        v-for="(article, index) in feedData.articlesCount"
-        :key="index"
-      />
+      <feed-loading v-for="index in feedData" :key="index.title" />
       <!-- must realizating logic for loader before getting feed data -->
     </div>
     <mcv-error-message v-if="error" :message="error" />
@@ -116,7 +113,7 @@ export default {
   mounted() {
     this.fetchFeed();
     setTimeout(() => {
-      console.log(this.feedData);
+      console.log('feedData', this.feedData);
     }, 3000);
   },
 

@@ -9,6 +9,7 @@ import {
   article,
   createArticle,
   editArticle,
+  settings,
 } from '@/store/modules';
 
 // import auth from '@/store/modules/auth';
@@ -30,5 +31,6 @@ export default new Vuex.Store({
     article,
     createArticle,
     editArticle,
+    settings, 
   },
 });
