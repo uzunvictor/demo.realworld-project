@@ -96,11 +96,5 @@ export default {
   components: {
     McvValidationErrors,
   },
-
-  mounted() {
-    setTimeout(() => {
-      console.log(this.initialValues);
-    }, 3000);
-  },
 };
 </script>
