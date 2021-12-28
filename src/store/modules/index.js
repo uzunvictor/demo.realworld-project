@@ -7,3 +7,4 @@ export {default as createArticle} from '@/store/modules/createArticle';
 export {default as editArticle} from '@/store/modules/editArticle';
 export {default as settings} from '@/store/modules/settings';
 export {default as addToFavorites} from '@/store/modules/addToFavorites';
+export {default as userProfile} from '@/store/modules/userProfile';

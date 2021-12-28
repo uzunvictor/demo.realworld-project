@@ -11,6 +11,7 @@ import {
   editArticle,
   settings,
   addToFavorites,
+  userProfile,
 } from '@/store/modules';
 
 // import auth from '@/store/modules/auth';
@@ -34,5 +35,6 @@ export default new Vuex.Store({
     editArticle,
     settings,
     addToFavorites,
+    userProfile,
   },
 });
