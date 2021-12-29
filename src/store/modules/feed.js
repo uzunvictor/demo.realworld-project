@@ -16,6 +16,7 @@ export const getterTypes = {
   getFeed: '[feed] getFeed',
   isLoading: '[feed] isLoading',
   error: '[feed] error',
+  isZeroArticles: '[feed] is zero articles',
 };
 
 export const actionTypes = {
@@ -43,6 +44,10 @@ const getters = {
   },
   [getterTypes.error](state) {
     return state.error;
+  },
+  [getterTypes.isZeroArticles]: (state) => {
+    const zeroArticles = JSON.parse(JSON.stringify(state.data));
+    return zeroArticles.articlesCount === 0;
   },
 };
 

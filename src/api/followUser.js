@@ -1,7 +1,6 @@
 import axios from '@/api/axios';
 
 const followUser = ({slug, credentials}) => {
-  console.log('slug', slug);
   return axios.post(`/profiles/${slug}/follow`, {profile: {credentials}});
 };
 

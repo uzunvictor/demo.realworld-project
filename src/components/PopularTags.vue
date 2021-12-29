@@ -14,6 +14,7 @@
           :to="{name: 'tag', params: {slug: tag}}"
         >
           <div>{{ tag }}</div>
+          <!-- <div v-if="zeroTags">Backend gives us the empty array)))</div> -->
         </router-link>
       </div>
     </div>
@@ -28,21 +29,6 @@ import {mapState} from 'vuex';
 
 export default {
   name: 'McvPopularTags',
-  // data() {
-  //   return {
-  //     tags: [
-  //       'random',
-  //       'rando',
-  //       'andom',
-  //       'rndom',
-  //       'radom',
-  //       'ranom',
-  //       'randm',
-  //       'ranm',
-  //       'randmo',
-  //     ],
-  //   };
-  // },
 
   computed: {
     ...mapState({
@@ -50,10 +36,14 @@ export default {
       error: (state) => state.popularTags.error,
       tags: (state) => state.popularTags.tags,
     }),
+    // zeroTags() {
+    //   return this.tags.length === 0;
+    // },
   },
 
   mounted() {
     this.$store.dispatch(actionTypes.getTags);
+   // console.log(this.tags.length);
   },
 
   components: {
@@ -62,5 +52,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

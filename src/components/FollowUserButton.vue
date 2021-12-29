@@ -40,11 +40,6 @@ export default {
     },
   },
   mounted() {
-    setTimeout(() => {
-      console.log('profile.following', this.profile.following);
-      console.log('isFollowed', this.isFollowed);
-      console.log('isFollowing', this.isFollowing);
-    }, 3000);
     this.isFollowing = this.isFollowed;
   },
 

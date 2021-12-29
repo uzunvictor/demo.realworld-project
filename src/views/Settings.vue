@@ -115,10 +115,5 @@ export default {
     McvValidationErrors,
   },
 
-  mounted() {
-    setTimeout(() => {
-      console.log(this.currentUser);
-    }, 3000);
-  },
 };
 </script>

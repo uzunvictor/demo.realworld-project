@@ -99,7 +99,6 @@ const actions = {
         .then((response) => {
           commit(mutationTypes.registerSuccess, response.data.user);
           setItem('accessToken', response.data.user.token);
-          console.log(response);
           resolve(response.data.user);
         })
         .catch((error) => {

@@ -54,7 +54,7 @@
         :url="baseUrl"
       />
     </div>
-    <div v-if="zeroArticles">No articles are here... yet.</div>
+    <div v-if="isZeroArticles">No articles are here... yet.</div>
   </div>
 </template>
 
@@ -71,11 +71,6 @@ import McvAddToFavorites from '@/components/AddToFavorites';
 
 export default {
   name: 'McvFeed',
-  data() {
-    return {
-      skeletons: 3,
-    };
-  },
 
   components: {
     McvPagination,
@@ -97,6 +92,7 @@ export default {
       feedData: getterTypes.getFeed,
       isLoading: getterTypes.isLoading,
       error: getterTypes.error,
+      isZeroArticles: getterTypes.isZeroArticles,
     }),
 
     currentPage() {
@@ -110,9 +106,6 @@ export default {
     },
     offset() {
       return this.currentPage * limit - limit;
-    },
-    zeroArticles() {
-      return this.feedData.articlesCount === 0;
     },
   },
 
