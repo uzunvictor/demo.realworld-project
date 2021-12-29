@@ -54,6 +54,7 @@
         :url="baseUrl"
       />
     </div>
+    <div v-if="zeroArticles">No articles are here... yet.</div>
   </div>
 </template>
 
@@ -109,6 +110,9 @@ export default {
     },
     offset() {
       return this.currentPage * limit - limit;
+    },
+    zeroArticles() {
+      return this.feedData.articlesCount === 0;
     },
   },
 

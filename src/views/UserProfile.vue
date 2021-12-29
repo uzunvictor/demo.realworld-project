@@ -8,7 +8,12 @@
             <h4>{{ profile.username }}</h4>
             <p>{{ profile.bio }}</p>
             <div>
-              <button>follow</button>
+              <mcv-follow-user-button
+                v-if="profile"
+                :profile="profile"
+                :is-current-user-profile="isCurrentUserProfile"
+                :userProfileSlug="userProfileSlug"
+              />
               <router-link
                 v-if="isCurrentUserProfile"
                 class="btn btn-sm btn-outline-secondary action-btn"
@@ -57,6 +62,7 @@
 
 <script>
 import {actionTypes as userProfileActionTypes} from '@/store/modules/userProfile';
+import McvFollowUserButton from '@/components/FollowUserButton';
 import {getterTypes as authGetterTypes} from '@/store/modules/auth';
 import {mapGetters, mapState} from 'vuex';
 import McvFeed from '@/components/Feed';
@@ -112,13 +118,11 @@ export default {
 
   mounted() {
     this.fetchUserProfile();
-    setTimeout(() => {
-      console.log(this.profile, this.currentUser);
-    }, 3000);
   },
 
   components: {
     McvFeed,
+    McvFollowUserButton,
   },
 };
 </script>

@@ -12,6 +12,7 @@ import {
   settings,
   addToFavorites,
   userProfile,
+  followUser,
 } from '@/store/modules';
 
 // import auth from '@/store/modules/auth';
@@ -36,5 +37,6 @@ export default new Vuex.Store({
     settings,
     addToFavorites,
     userProfile,
+    followUser,
   },
 });
